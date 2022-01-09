@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', speechToEmotion, false)
 function speechToEmotion() {
   const recognition = new webkitSpeechRecognition() 
   recognition.lang = 'en-US'
-  recognition.continuous = true
+  recognition.continuous = true;
+  // recognition.interimResults = true;
 
   recognition.onresult = function(event) {
     const results = event.results
