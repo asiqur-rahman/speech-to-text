@@ -21,6 +21,31 @@
         <p class="output"><em>Click anywhere to activate voice input system.</em></p>
     </div>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="artyom.window.js"></script>
+  <script>
+      var Jarvis = new Artyom();
+
+      // Start the commands !
+      Jarvis.initialize({
+          lang: "en-GB", // GreatBritain english
+          continuous: true, // Listen forever
+          soundex: true,// Use the soundex algorithm to increase accuracy
+          debug: true, // Show messages in the console
+          executionKeyword: "and do it now",
+          listen: true, // Start to listen commands !
+
+          // If providen, you can only trigger a command if you say its name
+          // e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
+          name: "Jarvis" 
+      }).then(() => {
+          console.log("Artyom has been succesfully initialized");
+      }).catch((err) => {
+          console.error("Artyom couldn't be initialized: ", err);
+      });
+      document.body.onclick = function() {
+        Jarvis.say("Hello World !");
+      }
+  </script>
   </body>
 </html>

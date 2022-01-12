@@ -11,6 +11,43 @@
       <img class="idle">
     </div>
 
-    <script src="recognition.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+    <script src="./artyom.window.js"></script>
+  <script>
+      var Jarvis = new Artyom();
+
+      // Start the commands !
+      Jarvis.initialize({
+          // lang: "en-GB", 
+          // lang: "hi-IN",
+          lang: "en-US",
+          continuous: true, // Listen forever
+          soundex: true,// Use the soundex algorithm to increase accuracy
+          debug: true, // Show messages in the console
+          executionKeyword: "and do it now",
+          listen: true, // Start to listen commands !
+          speed:0.8,
+
+          // If providen, you can only trigger a command if you say its name
+          // e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
+          // name: "Jarvis" 
+      }).then(() => {
+          console.log("Artyom has been succesfully initialized");
+      }).catch((err) => {
+          console.error("Artyom couldn't be initialized: ", err);
+      });
+
+      document.body.onclick = function() {
+        Jarvis.say("Dear Ashiq, I am sorry no data found here.",{
+            onStart:function(){
+                console.log("The text is being readed");
+            },
+            onEnd:function(){
+                console.log("Well, that was all. Try with a longer text !");
+            }
+        });
+      }
+  </script>
   </body>
 </html>
